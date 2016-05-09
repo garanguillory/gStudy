@@ -19,6 +19,9 @@ angular
       .when('/deck', {
         template: '<deck></deck>'
       })
+      .when('/study', {
+        template: '<study></study>'
+      })
       .otherwise({
         redirectTo: '/'
       });

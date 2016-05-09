@@ -2,7 +2,8 @@
 
 	1). universal
 	2). navbar
-	3). 
+	3). decks
+	4). study
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -63,11 +64,16 @@
 
 /* ------- decks -------- */
 
-.decks li {
-	display: inline-block;
-}
+	.decks li {
+		display: inline-block;
+	}
 
+/* ------- question stats -------- */
 
+	.question-stats li{
+		display: inline-block;
+		padding-right: 2rem;
+	}
 
 
 
