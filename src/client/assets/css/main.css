@@ -1,0 +1,73 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	1). universal
+	2). navbar
+	3). 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ------ universal ------- */
+
+	html{
+		font:16px;
+	}
+
+	ul {
+		padding-left: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+
+	.ng-cloak {
+		display: none;
+	}
+
+	.green {
+		color: green;
+	}
+
+	.red {
+		color: red;
+	}
+
+	.centered {
+		text-align: center;
+	}
+
+	.wrapper {
+		margin: 0 1rem;
+	}
+
+	.placeholder {
+		background: red;
+		height: 200px;
+		width: 200px;
+	}
+
+/* ------- navbar -------- */
+
+.navbar {
+	border-radius: 0;
+}
+
+
+/* ------- decks -------- */
+
+.decks li {
+	display: inline-block;
+}
+
+
+
+
+
