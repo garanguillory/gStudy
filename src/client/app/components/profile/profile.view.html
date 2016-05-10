@@ -5,26 +5,17 @@
 
 	<div class="row">
 		<div class="col-sm-8" style="border-right: 1px solid black;">
+			{{ decks }}
 			<h1> <a ng-href="#/newdeck"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create a New Deck</a></h1>
 			<div class="row">
 				<div class="col-sm-12">
 					<h3 style="border-bottom: 1px solid black;">My Decks</h3>
 					<!-- ng-repeat here change div to images-->
 					<ul class="decks">
-						<li class="col-sm-4">
-							<img src="http://placehold.it/200x200">
-							<p>Starter Deck</p>
-							<p>Created 3 days ago</p>
-						</li>
-						<li class="col-sm-4">
-							<img src="http://placehold.it/200x200">
-							<p>Beginning Spanish</p>
-							<p>Created 9 days ago</p>
-						</li>
-						<li class="col-sm-4">
-							<img src="http://placehold.it/200x200">
-							<p>Beginning CSS</p>
-							<p>Updated 1 day ago</p>
+						<li ng-repeat="deck in decks" class="col-sm-4">
+							<a ng-href="#/deck/{{deck.id}}"><img src="http://placehold.it/200x200"></a>
+							<p>{{deck.name}}</p>
+							<p>{{deck.description}}</p>
 						</li>
 					</ul>
 				</div>

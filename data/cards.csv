@@ -1,0 +1,10 @@
+deck_id,question,answer,image_url
+1,"Good Morning","Bom Dia","http://placehold.it/200x200"
+1,"Good Afternoon","Boa Tarde","http://placehold.it/200x200"
+1,"Good Night","Boa Noite","http://placehold.it/200x200"
+2,"Good Morning","Buenos Dias","http://placehold.it/200x200"
+2,"Good Afternoon","Buenas Tardes","http://placehold.it/200x200"
+2,"Good Morning","Buenas Nochess","http://placehold.it/200x200"
+3,"CSS question 1","CSS answer 1","http://placehold.it/200x200"
+3,"CSS question 2","CSS answer 2","http://placehold.it/200x200"
+3,"CSS question 3","CSS answer 3","http://placehold.it/200x200"
