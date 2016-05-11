@@ -1,6 +1,10 @@
 angular
 	.module('gStudy')
-	.service('newdeckService', [ function(){
+	.service('newdeckService', [ '$http', function($http){
+
+		// return {
+			
+		// }
 
 }]);
 

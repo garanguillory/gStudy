@@ -8,7 +8,6 @@ angular
 			controller: function($scope){
 				
 				var id = $routeParams.id;
-				console.log('id: ', id);
 
 				studyService.getDeck(id)
 							.then(function (data) {

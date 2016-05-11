@@ -6,9 +6,11 @@ function Users() {
 }
 
 module.exports = {
+
     Users: function() {
         return Users();
     },
+
     getDecksByUser: function(user_id) {
         return knex.select('users.id', 'decks.id', 'decks.name', 'decks.description', 'decks.image_url')
         					 .from('decks')
@@ -16,13 +18,19 @@ module.exports = {
         					 .where('users.id', user_id);
     },
 
-    // + + + + + + + + + + + + + + + + + + + + + + 
     getDeck: function(deck_id) {
         return knex.select('decks.id', 'decks.name', 'decks.description', 'decks.image_url', 'cards.question', 'cards.answer', 'cards.image_url')
         					 .from('decks')
         					 .rightJoin('cards', 'decks.id', 'cards.deck_id')
         					 .where('cards.deck_id', deck_id);
     },
+
+    // + + + + + + + + + + + + + + + + + + + + + + 
+
+    // addDeck: function(user_id){
+
+    // },
+
     // + + + + + + + + + + + + + + + + + + + + + + 
 
     CheckEmail: function(email) {

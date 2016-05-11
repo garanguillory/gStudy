@@ -1,6 +1,6 @@
 
 <navigation></navigation>
-<!-- {{deck}} -->
+
 <div class="wrapper">
 
 	<div class="row">
@@ -33,27 +33,22 @@
 			</div>
 	<br>
 
-		<div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
-		  <div class="panel-body">
-		  	<div class="answer">
-			    <p ng-click="playAgain()" ng-show="deck.length - answered.length == 0" class="centered">Click here to play again</p>
-			    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == true && deck.length - answered.length != 0" class="centered">click here to reveal the answer</p>
-			    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == false  && deck.length - answered.length != 0" class="centered">{{deck[current].answer}}</p>
-		    </div>
-		  </div>
-		</div>
-			<!-- <div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
+			<div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
 			  <div class="panel-body">
-			    Basic panel example
+			  	<div class="answer">
+				    <p ng-click="playAgain()" ng-show="deck.length - answered.length == 0" class="centered">Click here to play again</p>
+				    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == true && deck.length - answered.length != 0" class="centered">click here to reveal the answer</p>
+				    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == false  && deck.length - answered.length != 0" class="centered">{{deck[current].answer}}</p>
+			    </div>
 			  </div>
-			</div> -->
-
+			</div>
+		
 		</div> <!-- end col-sm-6 (left hand side of view) -->
 
 		<div class="col-sm-6">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3 style="margin-top: 0px;">{{deck[current].name}}</h3>
+					<h3 style="margin-top: 0px;"><a ng-href="#/deck/{{deck[0].id}}">{{deck[0].name}}</a></h3>
 					<ul class="question-stats">
 						<li><span>{{deck.length - answered.length}}</span> Questions Remain</li>
 						<li><span>{{correct.length}}</span> Questions Correct</li>
