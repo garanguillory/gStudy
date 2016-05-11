@@ -27,6 +27,8 @@ angular
 
 				$scope.playAgain = function(){
 					$scope.current = 0;
+					$scope.percentCorrect = 0;
+					$scope.percentIncorrect = 0;
 					$scope.answered = [];
 					$scope.correct = [];
 					$scope.incorrect = [];
