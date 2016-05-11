@@ -10,7 +10,7 @@ module.exports = {
         return Users();
     },
     getDecksByUser: function(user_id) {
-        return knex.select('users.id', 'decks.id', 'decks.name', 'decks.description')
+        return knex.select('users.id', 'decks.id', 'decks.name', 'decks.description', 'decks.image_url')
         					 .from('decks')
         					 .rightJoin('users', 'decks.user_id', 'users.id')
         					 .where('users.id', user_id);
@@ -18,7 +18,7 @@ module.exports = {
 
     // + + + + + + + + + + + + + + + + + + + + + + 
     getDeck: function(deck_id) {
-        return knex.select('decks.id', 'decks.name', 'decks.description', 'cards.question', 'cards.answer', 'cards.image_url')
+        return knex.select('decks.id', 'decks.name', 'decks.description', 'decks.image_url', 'cards.question', 'cards.answer', 'cards.image_url')
         					 .from('decks')
         					 .rightJoin('cards', 'decks.id', 'cards.deck_id')
         					 .where('cards.deck_id', deck_id);

@@ -5,8 +5,8 @@ var jwt = require('jwt-simple');
 var knex = require('../../../db/knex.js');
 var queries = require("../../../queries");
 
-// edit 
 
+// get all decks assoociated with a user
 router.get('/:id/decks', function(req, res, next){
 	var id = req.params.id;
 
@@ -24,8 +24,26 @@ router.get('/:id/decks', function(req, res, next){
 
 });
 
-// + + + + + + + + + + + + + + + + + + + + + + 
+// get a single deck by id
 router.get('/deck/:id', function(req, res, next){
+	var id = req.params.id;
+
+	queries.getDeck(id)
+		.then(function(deck) {
+			console.log('deck: ', deck);
+		  res.status(200).json({
+		    status: 'success',
+		    data: deck
+		  });
+		})
+		.catch(function (err) {
+		  return next(err);
+		});
+});
+
+
+// + + + + + + + + + + + + + + + + + + + + + + 
+router.get('/study/:id', function(req, res, next){
 	var id = req.params.id;
 
 	queries.getDeck(id)

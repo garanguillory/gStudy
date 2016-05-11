@@ -5,15 +5,14 @@
 		<div class="col-sm-8 col-sm-offset-2">
 			<div class="row">
 				<div class="col-sm-4">
-					<img src="http://placehold.it/200x200">
+					<img ng-src="{{deck[0].image_url}}">
 				</div>
 				<div class="col-sm-8">
 					<h4>{{deck[0].name}}</h4>
 					<p>Created 3 days ago</p>
 					<p>{{deck[0].description}}
 					</p>
-					<!-- edit where 'Start Studying' button takes the user -->
-					<input ng-href="#/study/{{deck.id}}" type="submit" class="btn btn-default" value="Start Studying">
+					<a ng-href="#/study/{{deck[0].id}}"><input type="submit" class="btn btn-default" value="Start Studying"></a>
 				</div>
 			</div>
 			<hr>

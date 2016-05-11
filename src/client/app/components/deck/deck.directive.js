@@ -16,10 +16,6 @@ angular
 							console.log('deck', data);
 							$scope.deck = data.data.data;
 					})
-
-				// $scope.deck = 
-
-				// deckService.getDeck()
 				
 			}
 		};

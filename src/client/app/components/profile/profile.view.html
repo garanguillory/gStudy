@@ -13,7 +13,7 @@
 					<!-- ng-repeat here change div to images-->
 					<ul class="decks">
 						<li ng-repeat="deck in decks" class="col-sm-4">
-							<a ng-href="#/deck/{{deck.id}}"><img src="http://placehold.it/200x200"></a>
+							<a ng-href="#/deck/{{deck.id}}"><img ng-src="{{deck.image_url}}"></a>
 							<p>{{deck.name}}</p>
 							<p>{{deck.description}}</p>
 						</li>

@@ -1,37 +1,50 @@
 
 <navigation></navigation>
-
+<!-- {{deck}} -->
 <div class="wrapper">
 
 	<div class="row">
 		<div class="col-sm-6" style="border-right: 1px solid black;">
 			<div class="row">
 				<div class="col-sm-12">
-					<img src="http://placehold.it/600x300">
+					<div class="question">
+						<p ng-show="deck.length - answered.length == 0" class="centered">This round: Correct {{percentCorrect}}%</p>
+						<p ng-show="deck.length - answered.length != 0"class="centered">{{deck[current].question}}</p>
+					</div>
 				</div>
 			</div>
-
+	<br>
 			<div class="row">
 				<div class="col-sm-12">
-					<i class="fa fa-plus-square pull-left" aria-hidden="true"></i>
-					<i class="fa fa-minus-square" aria-hidden="true"></i>
+					<div class="row">
+						<div class="col-sm-6">
+							<i ng-click="addCorrect(deck[current])" class="fa fa-plus-square fa-2x pull-left" aria-hidden="true"></i>
+						</div>
+						<div class="col-sm-6">
+							<i ng-click="addIncorrect(deck[current])" class="fa fa-minus-square fa-2x pull-right" aria-hidden="true"></i>
+						</div>
+					</div>
 				</div>
 			</div>
-
+	<br>
 			<div class="row">
 				<div class="col-sm-12">
-					<img src="http://placehold.it/600x300">
+					<div class="answer">
+						<p ng-click="playAgain()" ng-show="deck.length - answered.length == 0" class="centered">Click here to play again</p>
+						<p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == true && deck.length - answered.length != 0" class="centered">click here to reveal the answer</p>
+						<p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == false  && deck.length - answered.length != 0" class="centered">{{deck[current].answer}}</p>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-6">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3 style="margin-top: 0px;">Beginning CSS</h3>
+					<h3 style="margin-top: 0px;">{{deck[current].name}}</h3>
 					<ul class="question-stats">
-						<li><span>12</span> Questions Remain</li>
-						<li><span>6</span> Questions Correct</li>
-						<li><span>1</span> Questions Incorrect</li>
+						<li><span>{{deck.length - answered.length}}</span> Questions Remain</li>
+						<li><span>{{correct.length}}</span> Questions Correct</li>
+						<li><span>{{incorrect.length}}</span> Questions Incorrect</li>
 					</ul>
 				</div>
 			</div>
@@ -40,18 +53,13 @@
 				<div class="col-sm-12">
 					<h3 style="margin-top: 0px;">Previously Answered</h3>
 					<div class="row">
-						<img class="col-sm-6" src="http://placehold.it/300x150">
-						<img class="col-sm-6"src="http://placehold.it/300x150">
-					</div>
-				<br>
-					<div class="row">
-						<img class="col-sm-6" src="http://placehold.it/300x150">
-						<img class="col-sm-6"src="http://placehold.it/300x150">
-					</div>
-				<br>
-					<div class="row">
-						<img class="col-sm-6" src="http://placehold.it/300x150">
-						<img class="col-sm-6"src="http://placehold.it/300x150">
+						<div class="col-sm-6" ng-repeat="card in answered">
+							<div class="previous-question">
+								<p ng-click="previousQuestion ? previousQuestion = false : previousQuestion = true" ng-show="previousQuestion == true" class="centered">{{card.question}}</p>
+								<p ng-click="previousQuestion ? previousQuestion = false : previousQuestion = true" ng-show="previousQuestion == false" class="centered">{{card.answer}}</p>
+							</div>
+							<br>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -31,7 +31,7 @@ angular
         restricted: true,
         preventLoggedIn: false
       })
-      .when('/study', {
+      .when('/study/:id', {
         template: '<study></study>',
         restricted: true,
         preventLoggedIn: false
