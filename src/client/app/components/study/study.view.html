@@ -5,13 +5,18 @@
 
 	<div class="row">
 		<div class="col-sm-6" style="border-right: 1px solid black;">
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="question">
-						<p ng-show="deck.length - answered.length == 0" class="centered">This round: Correct {{percentCorrect}}%</p>
-						<p ng-show="deck.length - answered.length != 0"class="centered">{{deck[current].question}}</p>
-					</div>
-				</div>
+
+			<div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
+			  <div class="panel-body">
+			    <div class="question">
+			    	<p ng-show="deck.length - answered.length == 0" class="centered">
+			    		<span ng-show="correct.length == deck.length">You answered every single question correctly. Good job!</span>
+			    		<span ng-show="percentCorrect > 0 && correct.length != deck.length">This round you answered {{percentCorrect}}% of the questions correctly.</span>
+			    		<span ng-show="percentIncorrect > 0 && incorrect.length == deck.length">You answered every single question INCORRECTLY. Go over the cards again.</span>
+			    	</p>
+			    	<p ng-show="deck.length - answered.length != 0"class="centered">{{deck[current].question}}</p>
+			    </div>
+			  </div>
 			</div>
 	<br>
 			<div class="row">
@@ -27,16 +32,24 @@
 				</div>
 			</div>
 	<br>
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="answer">
-						<p ng-click="playAgain()" ng-show="deck.length - answered.length == 0" class="centered">Click here to play again</p>
-						<p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == true && deck.length - answered.length != 0" class="centered">click here to reveal the answer</p>
-						<p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == false  && deck.length - answered.length != 0" class="centered">{{deck[current].answer}}</p>
-					</div>
-				</div>
-			</div>
+
+		<div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
+		  <div class="panel-body">
+		  	<div class="answer">
+			    <p ng-click="playAgain()" ng-show="deck.length - answered.length == 0" class="centered">Click here to play again</p>
+			    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == true && deck.length - answered.length != 0" class="centered">click here to reveal the answer</p>
+			    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == false  && deck.length - answered.length != 0" class="centered">{{deck[current].answer}}</p>
+		    </div>
+		  </div>
 		</div>
+			<!-- <div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
+			  <div class="panel-body">
+			    Basic panel example
+			  </div>
+			</div> -->
+
+		</div> <!-- end col-sm-6 (left hand side of view) -->
+
 		<div class="col-sm-6">
 			<div class="row">
 				<div class="col-sm-12">
@@ -54,11 +67,14 @@
 					<h3 style="margin-top: 0px;">Previously Answered</h3>
 					<div class="row">
 						<div class="col-sm-6" ng-repeat="card in answered">
-							<div class="previous-question">
-								<p ng-click="previousQuestion ? previousQuestion = false : previousQuestion = true" ng-show="previousQuestion == true" class="centered">{{card.question}}</p>
-								<p ng-click="previousQuestion ? previousQuestion = false : previousQuestion = true" ng-show="previousQuestion == false" class="centered">{{card.answer}}</p>
+							<div class="panel panel-default" style="max-height: 100vh;min-height: 15vh">
+							  <div class="panel-body">
+								  <div class="previous-question">
+								  	<p ng-click="previousQuestion ? previousQuestion = false : previousQuestion = true" ng-show="previousQuestion == true" class="centered">{{card.question}}</p>
+								  	<p ng-click="previousQuestion ? previousQuestion = false : previousQuestion = true" ng-show="previousQuestion == false" class="centered">{{card.answer}}</p>
+								  </div>
+							  </div>
 							</div>
-							<br>
 						</div>
 					</div>
 				</div>

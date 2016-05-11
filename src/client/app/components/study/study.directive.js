@@ -25,39 +25,37 @@ angular
 				$scope.correct = [];
 				$scope.incorrect = [];
 
-
-				$scope.addCorrect = function(card){
-					if($scope.current <= $scope.deck.length){
-							$scope.correct.push(card);
-							$scope.answered.push(card);
-							++$scope.current;
-					} else {
-							$scope.current = 0;
-					}
-					if($scope.correct.length){
-						$scope.percentCorrect = Math.floor(100 * $scope.correct.length / $scope.deck.length);
-					}
-				};
-
-				$scope.addIncorrect = function(card){
-					if($scope.current <= $scope.deck.length){
-							$scope.incorrect.push(card);
-							$scope.answered.push(card);
-							++$scope.current;
-					} else {
-							$scope.current = 0;
-					}
-					if($scope.incorrect.length){
-						$scope.percentIncorrect = Math.floor(100 * ($scope.incorrect.length / $scope.deck.length));
-					}
-				};
-
 				$scope.playAgain = function(){
 					$scope.current = 0;
 					$scope.answered = [];
 					$scope.correct = [];
 					$scope.incorrect = [];
+				};
 
+				$scope.addCorrect = function(card){
+					if($scope.current < $scope.deck.length){
+							$scope.correct.push(card);
+							$scope.answered.push(card);
+							++$scope.current;
+					} else {
+							$scope.playAgain();
+					}
+					if($scope.correct.length){
+						$scope.percentCorrect = Math.floor(100 * ($scope.correct.length / $scope.deck.length));
+					}
+				};
+
+				$scope.addIncorrect = function(card){
+					if($scope.current < $scope.deck.length){
+							$scope.incorrect.push(card);
+							$scope.answered.push(card);
+							++$scope.current;
+					} else {
+							$scope.playAgain();
+					}
+					if($scope.incorrect.length){
+						$scope.percentIncorrect = Math.floor(100 * ($scope.incorrect.length / $scope.deck.length));
+					}
 				};
 				
 			}
