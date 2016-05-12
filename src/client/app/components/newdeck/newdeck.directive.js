@@ -1,43 +1,33 @@
 
 angular
 	.module('gStudy')
-	.directive("newdeck",['newdeckService', '$window', function(newdeckService, $window){
+	.directive("newdeck",['newdeckService', '$window','$compile', function(newdeckService, $window, $compile){
 		return {
 			restrict: 'AE',
 			templateUrl: "app/components/newdeck/newdeck.view.html",
-			controller: function($scope){
+			controller: function($scope, $location){
 
 				var id = $window.localStorage.id;
 
 				console.log('id: ',id);
 
 				$scope.deckInfo = {};
-				$scope.deckInfo.user_id = id;
-				$scope.card = {}; 										// ???
-				$scope.deckInfo.cardsArray = [];
+				$scope.deckInfo.user_id = id;				
+				$scope.deckInfo.cardsArray = [{}];
 
-				$scope.addCard = function(){
-					$scope.deckInfo.cardsArray.push($scope.card);
-					$scope.card = {};
-					// code to add a new card form
-				};
+				// how to set a default image to http://placehold.it/200x200 ???
 
-				$scope.createDeck = function(){
-					$scope.deckInfo.cardsArray.push($scope.card);	
+				$scope.createDeck = function(){	
 					newdeckService.addDeckInfo($scope.deckInfo)
 						.then(function(deck){
 							console.log("created deck: ", deck);
+							$location.path('/profile');
 						})
 						.catch(function(err) {
 						  // check status code, send appropriate message
 						  console.log("err: ",err);
 						});
 
-
-
-					$scope.deckInfo = {};
-					$scope.card = {};
-					$scope.deckInfo.cardsArray = [];
 				};
 
 

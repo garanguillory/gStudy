@@ -36,6 +36,11 @@ angular
         restricted: true,
         preventLoggedIn: false
       })
+      .when('/editdeck/:id', {
+        template: '<editdeck></editdeck>',
+        restricted: true,
+        preventLoggedIn: false
+      })
       .when('/logout', {
         restricted: false,
         preventLoggedIn: false,

@@ -27,20 +27,28 @@ module.exports = {
     },
 
     getDeck: function(deck_id) {
-        return knex.select('decks.id', 'decks.name', 'decks.description', 'decks.image_url', 'cards.question', 'cards.answer', 'cards.image_url')
+        return knex.select('decks.id', 'decks.name', 'decks.description', 'decks.image_url', 'cards.id', 'cards.question', 'cards.answer', 'cards.image_url')
         					 .from('decks')
         					 .rightJoin('cards', 'decks.id', 'cards.deck_id')
         					 .where('cards.deck_id', deck_id);
     },
 
-    // + + + + + + + + + + + + + + + + + + + + + + 
-
     addDeck: function(deck){
-    	return Decks().insert(deck).returning('id'); // returning what ????
+    	return Decks().insert(deck).returning('id');
     },
 
     addCard: function(card){
     	return Cards().insert(card).returning('id');
+    },
+
+    // + + + + + + + + + + + + + + + + + + + + + + 
+
+    updateDeck: function(newInfo, deck_id){
+        return Decks().update(newInfo).where('id', deck_id); // .returning('id');
+    },
+
+    updateCards: function(newInfo, card_id){
+        return Cards().update(newInfo).where('id', card_id).returning('id');
     },
 
     // + + + + + + + + + + + + + + + + + + + + + + 

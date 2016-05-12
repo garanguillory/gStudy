@@ -59,10 +59,47 @@ router.get('/study/:id', function(req, res, next){
 		});
 });
 
+// + + + + + + + + + + + + + + + + + + + + + + 
+
+// edit deck (by id) and associated cards
+router.put('/editdeck/:id', function(req, res, next){
+	var data = req.body;
+	var deckData = {
+		name: data[0].name,
+		description: data[0].description,
+		image_url: data[0].image_url
+	};
+
+	queries.updateDeck(deckData, data[0].id)
+		.then(function() {
+			// var id = Number(id);
+			console.log('data: ', data);
+			var promises = data.map(function(card){
+				var cardData = {
+					id: card.id,
+					question: card.question,
+					answer: card.answer,
+					image_url: card.image_url   // add question image_url and answer image_url
+				};
+				return queries.updateCards(cardData, cardData.id)
+			});
+			return Promise.all(promises);
+		})
+		.then(function(cardIdArray){
+			res.status(200).json({
+			  status: 'success',
+			  data: cardIdArray
+			});
+		})
+		.catch(function (err) {
+		  return next(err);
+		});
+});
 
 // + + + + + + + + + + + + + + + + + + + + + +
-// add a deck and add associated cards
 
+
+// add a deck and add associated cards
 router.post('/newdeck', function(req, res, next){
 	var data = req.body;
 	var deckData = {
@@ -96,8 +133,6 @@ router.post('/newdeck', function(req, res, next){
 		  return next(err);
 		});
 });
-
-// + + + + + + + + + + + + + + + + + + + + + + 
 
 
 // get user by id
