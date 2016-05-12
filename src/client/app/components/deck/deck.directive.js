@@ -9,8 +9,6 @@ angular
 
 				var id = $routeParams.id;
 
-				console.log('id: ', id);
-
 				deckService.getDeck(id)
 							.then(function (data) {
 							console.log('deck', data);

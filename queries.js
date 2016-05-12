@@ -5,6 +5,14 @@ function Users() {
     return knex('users');
 }
 
+function Decks() {
+    return knex('decks');
+}
+
+function Cards() {
+    return knex('cards');
+}
+
 module.exports = {
 
     Users: function() {
@@ -27,9 +35,13 @@ module.exports = {
 
     // + + + + + + + + + + + + + + + + + + + + + + 
 
-    // addDeck: function(user_id){
+    addDeck: function(deck){
+    	return Decks().insert(deck).returning('id'); // returning what ????
+    },
 
-    // },
+    addCard: function(card){
+    	return Cards().insert(card).returning('id');
+    },
 
     // + + + + + + + + + + + + + + + + + + + + + + 
 

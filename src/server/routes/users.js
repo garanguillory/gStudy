@@ -42,7 +42,7 @@ router.get('/deck/:id', function(req, res, next){
 });
 
 
-// + + + + + + + + + + + + + + + + + + + + + + 
+// get a single deck by id (show cards in html)
 router.get('/study/:id', function(req, res, next){
 	var id = req.params.id;
 
@@ -58,7 +58,47 @@ router.get('/study/:id', function(req, res, next){
 		  return next(err);
 		});
 });
+
+
+// + + + + + + + + + + + + + + + + + + + + + +
+// add a deck and add associated cards
+
+router.post('/newdeck', function(req, res, next){
+	var data = req.body;
+	var deckData = {
+		name: data.name,
+		description: data.description,
+		image_url: data.image_url,
+		user_id: data.user_id
+	};
+
+	queries.addDeck(deckData)
+		.then(function(id) {
+			var id = Number(id);
+			var promises = data.cardsArray.map(function(card){
+				var cardData = {
+					deck_id: id,
+					question: card.question,
+					answer: card.answer,
+					image_url: card.image_url
+				};
+				return queries.addCard(cardData)
+			});
+			return Promise.all(promises);
+		})
+		.then(function(cardIdArray){
+			res.status(200).json({
+			  status: 'success',
+			  data: cardIdArray
+			});
+		})
+		.catch(function (err) {
+		  return next(err);
+		});
+});
+
 // + + + + + + + + + + + + + + + + + + + + + + 
+
 
 // get user by id
 router.get("/:id", function(req, res, next) {

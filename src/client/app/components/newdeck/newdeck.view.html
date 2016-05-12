@@ -5,20 +5,20 @@
 		<div class="col-sm-10 col-sm-offset-1">
 			<h1 class="centered">Create a New Deck</h1>
 
-			<form> <!-- need to add ng-submit and ng-models -->
+			<form ng-submit="createDeck()"> <!-- need to add ng-submit and ng-models -->
 			
 			<div class="panel panel-default" style="max-height: 100vh;min-height: 20vh">
 			  <div class="panel-body">
 			    <div class="form-group col-sm-6" >
 			      <label for="deck-name">Deck Name</label>
-			      <input type="text" class="form-control" id="deck-name" placeholder="Deck Name">
+			      <input ng-model="deckInfo.name" type="text" class="form-control" id="deck-name" placeholder="Deck Name">
 			      <br>
 			      <label for="deck-image">Deck Image</label>
-			      <input type="text" class="form-control" id="deck-image" placeholder="Deck Image URL">
+			      <input ng-model="deckInfo.image_url" type="text" class="form-control" id="deck-image" placeholder="Deck Image URL">
 			    </div>
 			    <div class="form-group col-sm-6">
 			      <label for="deck-description">Deck Description</label>
-			      <textarea class="form-control" rows="5" id="deck-description" placeholder="Deck Description"></textarea>
+			      <textarea ng-model="deckInfo.description" class="form-control" rows="5" id="deck-description" placeholder="Deck Description"></textarea>
 			    </div>
 			  </div>
 			</div>
@@ -27,28 +27,28 @@
 			  <div class="panel-body">
 					<div class="form-group col-sm-6" >
 					  <label for="question">Question:</label>
-					  <input type="text" class="form-control" id="question" placeholder="Question">
+					  <input ng-model="card.question" type="text" class="form-control" id="question" placeholder="Question">
 					</div>
 					<div class="form-group col-sm-6">
 					  <label for="answer">Answer:</label>
-					  <input type="text" class="form-control" id="answer" placeholder="Answer">
+					  <input ng-model="card.answer" type="text" class="form-control" id="answer" placeholder="Answer">
 					</div>
 
 					<div class="form-group col-sm-6" >
 					  <label for="question-url">Question Image URL (optional):</label>
-					  <input type="text" class="form-control" id="question-url" placeholder="Question URL">
+						  <!-- ng-model="card.question_image_url" -->
+					  <input ng-model="card.image_url" type="text" class="form-control" id="question-url" placeholder="Question URL">
 					</div>
 					<div class="form-group col-sm-6">
 					  <label for="answer-url">Answer Image URL (optional):</label>
-					  <input type="text" class="form-control" id="answer-url" placeholder="Answer URL">
+						  <!-- ng-model="card.answer_image_url" -->
+					  <input  type="text" class="form-control" id="answer-url" placeholder="Answer URL">
 					</div>
 					<div class="form-group col-sm-6" >
-					  <h4> <a><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a New Question</a> </h4>
+					  <h4 ng-click="addQuestion()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a New Question</h4>
 					</div>
-					<!-- <a><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a New Question</a> -->
 				</div>
 			</div>
-
 				<input class="btn btn-default pull-right" type="submit" value="Create Deck">	
 			</form>
 

@@ -15,8 +15,6 @@ angular
 				    	console.log("$scope.user: ", $scope.user);
 				      authService.setUserInfo(user);
 				      $location.path('/');
-				      // $location.path('/profile/'+$scope.user.id); ???
-				      // $location.path('/profile/'+user.id);        ???
 				      $rootScope.currentUser = authService.getUserInfo();
 				    })
 				    .catch(function(err) {
