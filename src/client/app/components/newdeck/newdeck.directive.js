@@ -12,6 +12,7 @@ angular
 				console.log('id: ',id);
 
 				$scope.deckInfo = {};
+				// $scope.card = {};
 				$scope.deckInfo.user_id = id;				
 				$scope.deckInfo.cardsArray = [{}];
 

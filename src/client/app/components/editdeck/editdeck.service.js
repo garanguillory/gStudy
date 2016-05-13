@@ -11,6 +11,15 @@ angular
 										.catch(function(err){
 										  return err;
 										});
+			},
+			deleteDeck: function(deck_id){
+				return $http.delete('/api/users/deck/'+deck_id+'/delete')
+										.then(function(res){
+										  return res;
+										})
+										.catch(function(err){
+										  return err;
+										}); 
 			}
 		}
 

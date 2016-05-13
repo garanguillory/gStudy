@@ -63,6 +63,7 @@ router.get('/study/:id', function(req, res, next){
 
 // edit deck (by id) and associated cards
 router.put('/editdeck/:id', function(req, res, next){
+	var id = req.params.id;
 	var data = req.body;
 	var deckData = {
 		name: data[0].name,
@@ -134,6 +135,27 @@ router.post('/newdeck', function(req, res, next){
 		});
 });
 
+// + + + + + + + + + + + + + + + + + + + + + +
+
+// delete a single deck by id
+router.delete('/deck/:deck_id/delete', function(req, res, next){
+	var deck_id = req.params.deck_id;
+
+	queries.deleteCards(deck_id)
+		.then(function() {
+			return queries.deleteDeck(deck_id)
+		})
+		.then(function(){
+			res.status(200).json({
+			  status: 'success',
+			});
+		})
+		.catch(function (err) {
+		  return next(err);
+		});
+});
+
+// + + + + + + + + + + + + + + + + + + + + + +
 
 // get user by id
 router.get("/:id", function(req, res, next) {

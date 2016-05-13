@@ -11,11 +11,11 @@ angular
 
 				profileService.getDecks(id)
 							.then(function (data) {
-							console.log('decks', data);
+							// console.log('decks', data);
 							$scope.decks = data.data.data;
 					})
 
-				console.log('$window.localStorage: ', $window.localStorage);
+				// console.log('$window.localStorage: ', $window.localStorage);
 
 				// console.log('currentUser: ', currentUser);
 

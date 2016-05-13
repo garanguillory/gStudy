@@ -8,10 +8,11 @@ angular
 			controller: function($scope, $window){
 
 				var id = $routeParams.id;
+				$scope.id = id;
 
 				deckService.getDeck(id)
 							.then(function (data) {
-							console.log('deck', data);
+							// console.log('deck', data);
 							$scope.deck = data.data.data;
 					})
 				

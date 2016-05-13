@@ -12,6 +12,7 @@ angular
 			controller: function($scope){
 				$scope.addCard = function(){
 					$scope.array.push({});
+					// $scope.card = {};
 					console.log($scope.array);
 				};
 			}

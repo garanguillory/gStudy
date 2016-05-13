@@ -41,14 +41,22 @@ module.exports = {
     	return Cards().insert(card).returning('id');
     },
 
-    // + + + + + + + + + + + + + + + + + + + + + + 
-
     updateDeck: function(newInfo, deck_id){
         return Decks().update(newInfo).where('id', deck_id); // .returning('id');
     },
 
     updateCards: function(newInfo, card_id){
         return Cards().update(newInfo).where('id', card_id).returning('id');
+    },
+
+    // + + + + + + + + + + + + + + + + + + + + + + 
+
+    deleteDeck: function(deck_id){
+        return Decks().where('id', deck_id).del();
+    },
+
+    deleteCards: function(deck_id){
+        return Cards().where('deck_id', deck_id).del();
     },
 
     // + + + + + + + + + + + + + + + + + + + + + + 

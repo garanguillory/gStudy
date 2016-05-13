@@ -5,7 +5,13 @@ angular
 		return {
 			restrict: 'AE',
 			templateUrl: "app/components/navigation/navigation.view.html",
-			controller: function($scope, $location){
+			controller: function($scope, $location, $window){
+
+					if($window.localStorage.token){
+						$scope.token = true;
+					} else {
+						$scope.token = false;
+					}
 
 					$scope.logout = function(){
 						console.log("logging out...");
