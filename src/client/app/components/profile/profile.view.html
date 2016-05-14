@@ -11,7 +11,7 @@
 					<h3 style="border-bottom: 1px solid black;">My Decks</h3>
 					<ul class="decks">
 						<li ng-repeat="deck in decks" class="col-sm-4">
-							<a ng-href="#/deck/{{deck.id}}"><img ng-src="{{deck.image_url}}"></a>
+							<a ng-href="#/deck/{{deck.id}}"><img ng-src="{{deck.image_url}}" style="max-height: 200px; max-width: 200px"></a>
 							<p>{{deck.name}}</p>
 							<p>{{deck.description}}</p>
 						</li>

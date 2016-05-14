@@ -11,15 +11,14 @@ angular
 
 				console.log('id: ',id);
 
-				$scope.deckInfo = {};
-				// $scope.card = {};
-				$scope.deckInfo.user_id = id;				
-				$scope.deckInfo.cardsArray = [{}];
+				$scope.deck = {};
+				$scope.deck.user_id = id;				
+				$scope.deck.cards = [{}];
 
 				// how to set a default image to http://placehold.it/200x200 ???
 
 				$scope.createDeck = function(){	
-					newdeckService.addDeckInfo($scope.deckInfo)
+					newdeckService.addDeckInfo($scope.deck)
 						.then(function(deck){
 							console.log("created deck: ", deck);
 							$location.path('/profile');

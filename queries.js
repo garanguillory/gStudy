@@ -26,6 +26,14 @@ module.exports = {
         					 .where('users.id', user_id);
     },
 
+    getDeckInfo: function(deck_id){
+        return Decks().where('id', deck_id);
+    },
+
+    getCards: function(deck_id){
+        return Cards().where('deck_id', deck_id);
+    },
+
     getDeck: function(deck_id) {
         return knex.select('decks.id', 'decks.name', 'decks.description', 'decks.image_url', 'cards.id', 'cards.question', 'cards.answer', 'cards.image_url')
         					 .from('decks')
@@ -42,7 +50,7 @@ module.exports = {
     },
 
     updateDeck: function(newInfo, deck_id){
-        return Decks().update(newInfo).where('id', deck_id); // .returning('id');
+        return Decks().update(newInfo).where('id', deck_id);
     },
 
     updateCards: function(newInfo, card_id){
@@ -53,6 +61,10 @@ module.exports = {
 
     deleteDeck: function(deck_id){
         return Decks().where('id', deck_id).del();
+    },
+
+    deleteCard: function(card_id){
+        return Cards().where('id', card_id).del();
     },
 
     deleteCards: function(deck_id){

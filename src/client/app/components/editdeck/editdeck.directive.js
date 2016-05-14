@@ -12,17 +12,23 @@ angular
 				deckService.getDeck(id)
 						.then(function (data) {
 						console.log('deckInfo', data);
-						$scope.deckInfo = data.data.data;
-						$scope.deckInfo.cardsArray = [];
-							for(var i=0; i<$scope.deckInfo.length; i++){
-								$scope.deckInfo.cardsArray.push($scope.deckInfo[i]);
-							}
-					})
+						$scope.deck = data.data.data;
+						for(var i=0; i<$scope.deck.cards.length; i++){
+							$scope.deck.cards[i].delete = false;
+							// $scope.deck.newcards = [];
+							$scope.deck.newcards = [{}];
+						}
+					});
 
-				// $scope.deckInfo.cardsArray = [];		
-				// for(var i=0; i<deckInfo.length; i++){
-				// 	$scope.deckInfo.cardsArray.push($scope.deckInfo[i]);
-				// }
+				$scope.deleteCard = function(card){
+					console.log(card);
+					card.delete = true;
+				};
+
+				$scope.unDeleteCard = function(card){
+					console.log(card);
+					card.delete = false;
+				};
 
 				$scope.deleteDeck = function(){
 					editdeckService.deleteDeck(id)
@@ -34,9 +40,13 @@ angular
 						});
 				};
 
+				// $scope.addNewCard = function(){
+				// 		$scope.deck.newcards.push({});
+				// };
+
 				$scope.editDeck = function(){
-					console.log($scope.deckInfo);
-					editdeckService.editDeck(id, $scope.deckInfo)
+					console.log($scope.deck);
+					editdeckService.editDeck(id, $scope.deck)
 						.then(function(deck){
 							console.log("edited deck: ", deck);
 							$location.path('/profile');
@@ -45,7 +55,6 @@ angular
 						  console.log("err: ",err);
 						});
 				};
-
 			}
 		};
 }]);

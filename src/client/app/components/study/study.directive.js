@@ -1,7 +1,7 @@
 
 angular
 	.module('gStudy')
-	.directive("study",['studyService', '$http', '$routeParams', function(studyService, $http, $routeParams){
+	.directive("study",['deckService', '$http', '$routeParams', function(deckService, $http, $routeParams){
 		return {
 			restrict: 'AE',
 			templateUrl: "app/components/study/study.view.html",
@@ -9,7 +9,7 @@ angular
 				
 				var id = $routeParams.id;
 
-				studyService.getDeck(id)
+				deckService.getDeck(id)
 							.then(function (data) {
 							console.log('deck', data);
 							$scope.deck = data.data.data;
@@ -34,7 +34,7 @@ angular
 				};
 
 				$scope.addCorrect = function(card){
-					if($scope.current < $scope.deck.length){
+					if($scope.current < $scope.deck.cards.length){
 							$scope.correct.push(card);
 							$scope.answered.push(card);
 							++$scope.current;
@@ -42,12 +42,12 @@ angular
 							$scope.playAgain();
 					}
 					if($scope.correct.length){
-						$scope.percentCorrect = Math.floor(100 * ($scope.correct.length / $scope.deck.length));
+						$scope.percentCorrect = Math.floor(100 * ($scope.correct.length / $scope.deck.cards.length));
 					}
 				};
 
 				$scope.addIncorrect = function(card){
-					if($scope.current < $scope.deck.length){
+					if($scope.current < $scope.deck.cards.length){
 							$scope.incorrect.push(card);
 							$scope.answered.push(card);
 							++$scope.current;
@@ -55,7 +55,7 @@ angular
 							$scope.playAgain();
 					}
 					if($scope.incorrect.length){
-						$scope.percentIncorrect = Math.floor(100 * ($scope.incorrect.length / $scope.deck.length));
+						$scope.percentIncorrect = Math.floor(100 * ($scope.incorrect.length / $scope.deck.cards.length));
 					}
 				};
 				

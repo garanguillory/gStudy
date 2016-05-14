@@ -1,16 +1,16 @@
 <navigation></navigation>
-<!-- {{deck}} -->
+
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
 			<div class="row">
 				<div class="col-sm-4">
-					<img ng-src="{{deck[0].image_url}}">
+					<img ng-src="{{deck.image_url}}" style="max-height: 200px; max-width: 200px">
 				</div>
 				<div class="col-sm-8">
-					<h4>{{deck[0].name}}</h4>
+					<h4>{{deck.name}}</h4>
 					<p>Created 3 days ago</p>
-					<p>{{deck[0].description}}
+					<p>{{deck.description}}
 					</p>
 					<a ng-href="#/study/{{id}}"><input type="submit" class="btn btn-default" value="Start Studying"></a>
 					<a ng-href="#/editdeck/{{id}}"><input type="submit" class="btn btn-default" value="Edit Deck"></a>
@@ -22,7 +22,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<h2>Sample Questions</h2>
-					<p>{{deck[0].question}}
+					<p>{{deck.cards[0].question}}
 					</p>
 				</div>
 			</div>

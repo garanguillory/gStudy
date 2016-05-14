@@ -9,12 +9,12 @@
 			<div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
 			  <div class="panel-body">
 			    <div class="question">
-			    	<p ng-show="deck.length - answered.length == 0" class="centered">
-			    		<span ng-show="correct.length == deck.length">You answered every single question CORRECTLY. Good job!</span>
-			    		<span ng-show="percentCorrect > 0 && correct.length != deck.length">This round you answered {{percentCorrect}}% of the questions correctly.</span>
-			    		<span ng-show="percentIncorrect > 0 && incorrect.length == deck.length">You answered every single question INCORRECTLY. Go over the cards again.</span>
+			    	<p ng-show="deck.cards.length - answered.length == 0" class="centered">
+			    		<span ng-show="correct.length == deck.cards.length">You answered every single question CORRECTLY. Good job!</span>
+			    		<span ng-show="percentCorrect > 0 && correct.length != deck.cards.length">This round you answered {{percentCorrect}}% of the questions correctly.</span>
+			    		<span ng-show="percentIncorrect > 0 && incorrect.length == deck.cards.length">You answered every single question INCORRECTLY. Go over the cards again.</span>
 			    	</p>
-			    	<p ng-show="deck.length - answered.length != 0"class="centered">{{deck[current].question}}</p>
+			    	<p ng-show="deck.cards.length - answered.length != 0"class="centered">{{deck.cards[current].question}}</p>
 			    </div>
 			  </div>
 			</div>
@@ -23,10 +23,10 @@
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-6">
-							<i ng-click="addCorrect(deck[current])" class="fa fa-plus-square fa-2x pull-left" aria-hidden="true"></i>
+							<i ng-click="addCorrect(deck.cards[current])" class="fa fa-plus-square fa-2x pull-left" aria-hidden="true"></i>
 						</div>
 						<div class="col-sm-6">
-							<i ng-click="addIncorrect(deck[current])" class="fa fa-minus-square fa-2x pull-right" aria-hidden="true"></i>
+							<i ng-click="addIncorrect(deck.cards[current])" class="fa fa-minus-square fa-2x pull-right" aria-hidden="true"></i>
 						</div>
 					</div>
 				</div>
@@ -36,9 +36,9 @@
 			<div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
 			  <div class="panel-body">
 			  	<div class="answer">
-				    <p ng-click="playAgain()" ng-show="deck.length - answered.length == 0" class="centered">Click here to play again</p>
-				    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == true && deck.length - answered.length != 0" class="centered">click here to reveal the answer</p>
-				    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == false  && deck.length - answered.length != 0" class="centered">{{deck[current].answer}}</p>
+				    <p ng-click="playAgain()" ng-show="deck.cards.length - answered.length == 0" class="centered">Click here to play again</p>
+				    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == true && deck.cards.length - answered.length != 0" class="centered">click here to reveal the answer</p>
+				    <p ng-click="currentQuestion ? currentQuestion = false : currentQuestion = true" ng-show="currentQuestion == false  && deck.cards.length - answered.length != 0" class="centered">{{deck.cards[current].answer}}</p>
 			    </div>
 			  </div>
 			</div>
@@ -48,9 +48,9 @@
 		<div class="col-sm-6">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3 style="margin-top: 0px;"><a ng-href="#/deck/{{deck[0].id}}">{{deck[0].name}}</a></h3>
+					<h3 style="margin-top: 0px;"><a ng-href="#/deck/{{deck.id}}">{{deck.name}}</a></h3>
 					<ul class="question-stats">
-						<li><span>{{deck.length - answered.length}}</span> Questions Remain</li>
+						<li><span>{{deck.cards.length - answered.length}}</span> Questions Remain</li>
 						<li><span>{{correct.length}}</span> Questions Correct</li>
 						<li><span>{{incorrect.length}}</span> Questions Incorrect</li>
 					</ul>

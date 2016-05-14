@@ -1,0 +1,25 @@
+
+
+<div id="cards-panel" class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
+  <div class="panel-body">
+		<div class="form-group col-sm-6" >
+		  <label for="question">Question:</label>
+		  <input ng-model="card.question" type="text" class="form-control" id="question" placeholder="Question">
+		</div>
+		<div class="form-group col-sm-6">
+		  <label for="answer">Answer:</label>
+		  <input ng-model="card.answer" type="text" class="form-control" id="answer" placeholder="Answer">
+		</div>
+
+		<div class="form-group col-sm-6" >
+		  <label for="question-url">Question Image URL (optional):</label>
+			  <!-- ng-model="card.question_image_url" -->
+		  <input ng-model="card.image_url" type="text" class="form-control" id="question-url" placeholder="Question URL">
+		</div>
+		<div class="form-group col-sm-6">
+		  <label for="answer-url">Answer Image URL (optional):</label>
+			  <!-- ng-model="card.answer_image_url" -->
+		  <input  type="text" class="form-control" id="answer-url" placeholder="Answer URL">
+		</div>
+	</div>
+</div>

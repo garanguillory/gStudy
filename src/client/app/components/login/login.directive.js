@@ -6,7 +6,6 @@ angular
 			restrict: 'AE',
 			templateUrl: "app/components/login/login.view.html",
 			controller: function($rootScope, $scope, $location, authService){
-				console.log("login directive")
 
 				$scope.user = {};
 				$scope.login = function() {

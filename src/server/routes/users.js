@@ -24,17 +24,21 @@ router.get('/:id/decks', function(req, res, next){
 
 });
 
-// get a single deck by id
+// WORKS
+// get a single deck by id (and associated cards)
 router.get('/deck/:id', function(req, res, next){
 	var id = req.params.id;
 
-	queries.getDeck(id)
-		.then(function(deck) {
-			console.log('deck: ', deck);
-		  res.status(200).json({
-		    status: 'success',
-		    data: deck
-		  });
+	queries.getDeckInfo(id)
+		.then(function(deck){
+			queries.getCards(deck[0].id)
+				.then(function(cards){
+					deck[0].cards = cards;
+					res.status(200).json({
+					  status: 'success',
+					  data: deck[0]
+					});
+				})
 		})
 		.catch(function (err) {
 		  return next(err);
@@ -43,21 +47,21 @@ router.get('/deck/:id', function(req, res, next){
 
 
 // get a single deck by id (show cards in html)
-router.get('/study/:id', function(req, res, next){
-	var id = req.params.id;
+// router.get('/study/:id', function(req, res, next){
+// 	var id = req.params.id;
 
-	queries.getDeck(id)
-		.then(function(deck) {
-			console.log('deck: ', deck);
-		  res.status(200).json({
-		    status: 'success',
-		    data: deck
-		  });
-		})
-		.catch(function (err) {
-		  return next(err);
-		});
-});
+// 	queries.getDeck(id)
+// 		.then(function(deck) {
+// 			console.log('deck: ', deck);
+// 		  res.status(200).json({
+// 		    status: 'success',
+// 		    data: deck
+// 		  });
+// 		})
+// 		.catch(function (err) {
+// 		  return next(err);
+// 		});
+// });
 
 // + + + + + + + + + + + + + + + + + + + + + + 
 
@@ -66,23 +70,45 @@ router.put('/editdeck/:id', function(req, res, next){
 	var id = req.params.id;
 	var data = req.body;
 	var deckData = {
-		name: data[0].name,
-		description: data[0].description,
-		image_url: data[0].image_url
+		name: data.name,
+		description: data.description,
+		image_url: data.image_url
 	};
 
-	queries.updateDeck(deckData, data[0].id)
+	queries.updateDeck(deckData, data.id)
 		.then(function() {
 			// var id = Number(id);
 			console.log('data: ', data);
-			var promises = data.map(function(card){
+			var promises = data.cards.map(function(card){
 				var cardData = {
 					id: card.id,
 					question: card.question,
 					answer: card.answer,
 					image_url: card.image_url   // add question image_url and answer image_url
 				};
-				return queries.updateCards(cardData, cardData.id)
+
+				if ( card.delete ) {
+					return queries.deleteCard(cardData.id)
+				} else {
+					return queries.updateCards(cardData, cardData.id)	
+				}
+			});
+
+			return Promise.all(promises);
+		})
+		.then(function(){
+			console.log('data.id: ', data.id)
+			
+			var promises = data.newcards.map(function(card){
+				if(card.hasOwnProperty('question')){
+					var cardData = {
+						deck_id: data.id,
+						question: card.question,
+						answer: card.answer,
+						image_url: card.image_url
+					};
+					return queries.addCard(cardData)
+				}
 			});
 			return Promise.all(promises);
 		})
@@ -91,6 +117,7 @@ router.put('/editdeck/:id', function(req, res, next){
 			  status: 'success',
 			  data: cardIdArray
 			});
+
 		})
 		.catch(function (err) {
 		  return next(err);
@@ -113,7 +140,7 @@ router.post('/newdeck', function(req, res, next){
 	queries.addDeck(deckData)
 		.then(function(id) {
 			var id = Number(id);
-			var promises = data.cardsArray.map(function(card){
+			var promises = data.cards.map(function(card){
 				var cardData = {
 					deck_id: id,
 					question: card.question,
