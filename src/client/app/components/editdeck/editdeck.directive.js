@@ -15,7 +15,6 @@ angular
 						$scope.deck = data.data.data;
 						for(var i=0; i<$scope.deck.cards.length; i++){
 							$scope.deck.cards[i].delete = false;
-							// $scope.deck.newcards = [];
 							$scope.deck.newcards = [{}];
 						}
 					});
@@ -39,10 +38,6 @@ angular
 						  console.log("err: ",err);
 						});
 				};
-
-				// $scope.addNewCard = function(){
-				// 		$scope.deck.newcards.push({});
-				// };
 
 				$scope.editDeck = function(){
 					console.log($scope.deck);

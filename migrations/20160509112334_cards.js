@@ -5,8 +5,9 @@ exports.up = function(knex, Promise) {
     table.integer('deck_id').unsigned();
     table.foreign('deck_id').references('id').inTable('decks');
     table.text('question');
+    table.text('question_image_url');
     table.text('answer');
-    table.string('image_url');
+    table.string('answer_image_url');
   });
 };
 

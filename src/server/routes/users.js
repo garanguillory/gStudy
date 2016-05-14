@@ -24,7 +24,6 @@ router.get('/:id/decks', function(req, res, next){
 
 });
 
-// WORKS
 // get a single deck by id (and associated cards)
 router.get('/deck/:id', function(req, res, next){
 	var id = req.params.id;
@@ -45,26 +44,6 @@ router.get('/deck/:id', function(req, res, next){
 		});
 });
 
-
-// get a single deck by id (show cards in html)
-// router.get('/study/:id', function(req, res, next){
-// 	var id = req.params.id;
-
-// 	queries.getDeck(id)
-// 		.then(function(deck) {
-// 			console.log('deck: ', deck);
-// 		  res.status(200).json({
-// 		    status: 'success',
-// 		    data: deck
-// 		  });
-// 		})
-// 		.catch(function (err) {
-// 		  return next(err);
-// 		});
-// });
-
-// + + + + + + + + + + + + + + + + + + + + + + 
-
 // edit deck (by id) and associated cards
 router.put('/editdeck/:id', function(req, res, next){
 	var id = req.params.id;
@@ -77,14 +56,14 @@ router.put('/editdeck/:id', function(req, res, next){
 
 	queries.updateDeck(deckData, data.id)
 		.then(function() {
-			// var id = Number(id);
 			console.log('data: ', data);
 			var promises = data.cards.map(function(card){
 				var cardData = {
 					id: card.id,
 					question: card.question,
+					question_image_url: card.question_image_url,
 					answer: card.answer,
-					image_url: card.image_url   // add question image_url and answer image_url
+					answer_image_url: card.answer_image_url
 				};
 
 				if ( card.delete ) {
@@ -104,8 +83,9 @@ router.put('/editdeck/:id', function(req, res, next){
 					var cardData = {
 						deck_id: data.id,
 						question: card.question,
+						question_image_url: card.question_image_url,
 						answer: card.answer,
-						image_url: card.image_url
+						answer_image_url: card.answer_image_url
 					};
 					return queries.addCard(cardData)
 				}
@@ -124,9 +104,6 @@ router.put('/editdeck/:id', function(req, res, next){
 		});
 });
 
-// + + + + + + + + + + + + + + + + + + + + + +
-
-
 // add a deck and add associated cards
 router.post('/newdeck', function(req, res, next){
 	var data = req.body;
@@ -144,8 +121,9 @@ router.post('/newdeck', function(req, res, next){
 				var cardData = {
 					deck_id: id,
 					question: card.question,
+					question_image_url: card.question_image_url,
 					answer: card.answer,
-					image_url: card.image_url
+					answer_image_url: card.answer_image_url
 				};
 				return queries.addCard(cardData)
 			});
@@ -161,8 +139,6 @@ router.post('/newdeck', function(req, res, next){
 		  return next(err);
 		});
 });
-
-// + + + + + + + + + + + + + + + + + + + + + +
 
 // delete a single deck by id
 router.delete('/deck/:deck_id/delete', function(req, res, next){
@@ -182,7 +158,6 @@ router.delete('/deck/:deck_id/delete', function(req, res, next){
 		});
 });
 
-// + + + + + + + + + + + + + + + + + + + + + +
 
 // get user by id
 router.get("/:id", function(req, res, next) {
