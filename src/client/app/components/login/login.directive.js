@@ -16,7 +16,6 @@ angular
 				      $rootScope.currentUser = authService.getUserInfo();
 				    })
 				    .catch(function(err) {
-				      // check status code, send appropriate message
 				      console.log(err);
 				    });
 				};

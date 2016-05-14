@@ -6,7 +6,6 @@ var knex = require('../../../db/knex.js');
 var queries = require("../../../queries");
 
 
-// get all decks assoociated with a user
 router.get('/:id/decks', function(req, res, next){
 	var id = req.params.id;
 
@@ -24,7 +23,7 @@ router.get('/:id/decks', function(req, res, next){
 
 });
 
-// get a single deck by id (and associated cards)
+
 router.get('/deck/:id', function(req, res, next){
 	var id = req.params.id;
 
@@ -44,7 +43,7 @@ router.get('/deck/:id', function(req, res, next){
 		});
 });
 
-// edit deck (by id) and associated cards
+
 router.put('/editdeck/:id', function(req, res, next){
 	var id = req.params.id;
 	var data = req.body;
@@ -104,7 +103,7 @@ router.put('/editdeck/:id', function(req, res, next){
 		});
 });
 
-// add a deck and add associated cards
+
 router.post('/newdeck', function(req, res, next){
 	var data = req.body;
 	var deckData = {
@@ -140,7 +139,7 @@ router.post('/newdeck', function(req, res, next){
 		});
 });
 
-// delete a single deck by id
+
 router.delete('/deck/:deck_id/delete', function(req, res, next){
 	var deck_id = req.params.deck_id;
 
@@ -158,16 +157,6 @@ router.delete('/deck/:deck_id/delete', function(req, res, next){
 		});
 });
 
-
-// get user by id
-router.get("/:id", function(req, res, next) {
-    var id = req.params.id;
-
-    queries.getUser(id).then(function(user){
-    	// where does 'user' go???
-    	res.render("profile");
-    })
-});
 
 module.exports = router;
 

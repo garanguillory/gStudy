@@ -14,11 +14,10 @@ angular
 				    .then(function(user) {
 				    	console.log("$scope.user: ", $scope.user);
 				      authService.setUserInfo(user);
-				      $location.path('/');
+				      $location.path('/profile');
 				      $rootScope.currentUser = authService.getUserInfo();
 				    })
 				    .catch(function(err) {
-				      // check status code, send appropriate message
 				      console.log("err: ",err);
 				    });
 				};
