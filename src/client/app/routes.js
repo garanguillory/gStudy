@@ -62,7 +62,6 @@ angular
     $rootScope.$on('$routeChangeStart', function(event, next, current) {
       // if route us restricted and no token is present
       if(next.restricted && !$window.localStorage.getItem('token')) {
-        console.log(next.restricted)
         $location.path('/login');
       }
       // if token and prevent logging in is true
