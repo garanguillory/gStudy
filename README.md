@@ -3,10 +3,10 @@ Angular Notecard App
 
 
 ## Technologies Used:
-Angular
-Express
-Node
-Postgresql
-Knex
-Bootstrap
+Angular,
+Express,
+Node,
+Postgresql,
+Knex,
+Bootstrap,
 Gulp
