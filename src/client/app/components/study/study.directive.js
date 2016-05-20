@@ -13,7 +13,7 @@ angular
 							.then(function (data) {
 							console.log('deck', data);
 							$scope.deck = data.data.data;
-					})
+					});
 
 				$scope.currentQuestion = true;
 				$scope.previousQuestion = true;
@@ -34,7 +34,9 @@ angular
 				};
 
 				$scope.addCorrect = function(card){
+						// card.wrong = false;
 					if($scope.current < $scope.deck.cards.length){
+						card.wrong = false;
 							$scope.correct.push(card);
 							$scope.answered.push(card);
 							++$scope.current;
@@ -47,7 +49,9 @@ angular
 				};
 
 				$scope.addIncorrect = function(card){
+						// card.wrong = true;
 					if($scope.current < $scope.deck.cards.length){
+						card.wrong = true;
 							$scope.incorrect.push(card);
 							$scope.answered.push(card);
 							++$scope.current;

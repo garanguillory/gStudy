@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-sm-6" style="border-right: 1px solid black;">
 
-			<div class="panel panel-default" style="max-height: 100vh;min-height: 30vh">
+			<div class="panel panel-default notecard" style="max-height: 100vh;min-height: 30vh">
 			  <div class="panel-body">
 			    <div class="question">
 			    	<p ng-show="deck.cards.length - answered.length == 0" class="centered">
@@ -61,8 +61,9 @@
 				<div class="col-sm-12">
 					<h3 style="margin-top: 0px;">Previously Answered</h3>
 					<div class="row">
+
 						<div class="col-sm-6" ng-repeat="card in answered">
-							<div class="panel panel-default" style="max-height: 100vh;min-height: 15vh">
+							<div ng-class="{correct: card.wrong == false, wrong: card.wrong}" class="panel panel-default notecard" style="max-height: 100vh;min-height: 15vh">
 							  <div class="panel-body">
 								  <div class="previous-question">
 								  	<p ng-click="previousQuestion ? previousQuestion = false : previousQuestion = true" ng-show="previousQuestion == true" class="centered">{{card.question}}</p>
@@ -71,6 +72,7 @@
 							  </div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>

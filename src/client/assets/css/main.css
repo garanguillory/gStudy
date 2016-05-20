@@ -32,7 +32,7 @@
 	.ng-cloak {
 		display: none;
 	}
-
+	
 	.green {
 		color: green;
 	}
@@ -73,10 +73,29 @@
 
 	/* ------- question & answer -------- */
 
+		.notecard,
+		.reveal {
+			background: url('https://upload.wikimedia.org/wikipedia/commons/2/2e/Notecard.jpg') no-repeat;
+			background-size: cover;
+		}
 
-/*		.panel-primary {
-		    height: calc(100vh - 145px);
-		}*/
+		.wrong {
+			background: 
+		    linear-gradient(
+		      rgba(255, 0, 0, 0.45), 
+		      rgba(255, 0, 0, 0.45)
+		    ),
+		    url('https://upload.wikimedia.org/wikipedia/commons/2/2e/Notecard.jpg') no-repeat;
+		}
+
+		.correct {
+			background: 
+		    linear-gradient(
+		      rgba(0, 180, 0, 0.45), 
+		      rgba(0, 180, 0, 0.45)
+		    ),
+		    url('https://upload.wikimedia.org/wikipedia/commons/2/2e/Notecard.jpg') no-repeat;
+		}
 
 	/* --- current questions & answers --- */	
 
