@@ -34,7 +34,6 @@ angular
 				};
 
 				$scope.addCorrect = function(card){
-						// card.wrong = false;
 					if($scope.current < $scope.deck.cards.length){
 						card.wrong = false;
 							$scope.correct.push(card);
@@ -49,7 +48,6 @@ angular
 				};
 
 				$scope.addIncorrect = function(card){
-						// card.wrong = true;
 					if($scope.current < $scope.deck.cards.length){
 						card.wrong = true;
 							$scope.incorrect.push(card);

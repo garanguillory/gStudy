@@ -26,11 +26,11 @@
         $window.localStorage.clear();
       },
       register: function(user) {
-        console.log("authService user: ", user)
+        console.log("authService user: ", user);
         return $http.post('/api/auth/register', user);
       },
       setUserInfo: function(userData) {
-        console.log("userData: ", userData)
+        console.log("userData: ", userData);
         $window.localStorage.setItem('id', userData.data.data.id);
         $window.localStorage.setItem('email', userData.data.data.email);
         $window.localStorage.setItem('token', userData.data.data.token);

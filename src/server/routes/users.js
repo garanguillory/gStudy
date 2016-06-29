@@ -36,7 +36,7 @@ router.get('/deck/:id', function(req, res, next){
 					  status: 'success',
 					  data: deck[0]
 					});
-				})
+				});
 		})
 		.catch(function (err) {
 		  return next(err);
@@ -96,7 +96,6 @@ router.put('/editdeck/:id', function(req, res, next){
 			  status: 'success',
 			  data: cardIdArray
 			});
-
 		})
 		.catch(function (err) {
 		  return next(err);
@@ -124,7 +123,7 @@ router.post('/newdeck', function(req, res, next){
 					answer: card.answer,
 					answer_image_url: card.answer_image_url
 				};
-				return queries.addCard(cardData)
+				return queries.addCard(cardData);
 			});
 			return Promise.all(promises);
 		})
@@ -145,7 +144,7 @@ router.delete('/deck/:deck_id/delete', function(req, res, next){
 
 	queries.deleteCards(deck_id)
 		.then(function() {
-			return queries.deleteDeck(deck_id)
+			return queries.deleteDeck(deck_id);
 		})
 		.then(function(){
 			res.status(200).json({

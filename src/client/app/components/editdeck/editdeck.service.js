@@ -21,7 +21,7 @@ angular
 										  return err;
 										}); 
 			}
-		}
+		};
 
 }]);
 

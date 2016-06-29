@@ -13,7 +13,7 @@ angular
 							.then(function (data) {
 							// console.log('decks', data);
 							$scope.decks = data.data.data;
-					})
+					});
 
 				// console.log('$window.localStorage: ', $window.localStorage);
 

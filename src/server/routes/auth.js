@@ -79,12 +79,6 @@ router.post('/login', function (req, res, next) {
 
 
 
-
-
-
-
-
-
 // // ** helpers ** //
 
 // generate a token
@@ -105,7 +99,7 @@ function comparePassword(password, done)  {
     }
     done(err, match);
   });
-};
+}
 
 function hashing(password) {
   return bcrypt.hashSync(password, 10);
